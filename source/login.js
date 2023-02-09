@@ -2,11 +2,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
-
+import CountDown from 'react-native-countdown-component';
+//đếm ngược 10s chuyển sang màn home
 export default function Login({ navigation }) {
   const [listCustomer, setListCustomer] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [countdown, setCountdown] = useState(10);
 
   const getListCustomer = async() => {
      const res = await fetch('https://60f4d20e2208920017f39df5.mockapi.io/customer')
@@ -22,6 +24,13 @@ export default function Login({ navigation }) {
 
   useEffect( () => {
     getListCustomer();
+
+    // setTimeout(function(){navigation.navigate('Home', {
+    //     username: username,
+    //     password: password,
+    //   })}, 10000)
+    
+
    
   }, [])
   const renderPost = (item) => {
@@ -35,21 +44,21 @@ export default function Login({ navigation }) {
   }
 
   const validate = () => {
-    var isCorrect = false
-    listCustomer.forEach(element => {
-      if(username == element.username && password == element.password) {
-        isCorrect = true;
-      }
-    });
+    // var isCorrect = false
+    // listCustomer.forEach(element => {
+    //   if(username == element.username && password == element.password) {
+    //     isCorrect = true;
+    //   }
+    // });
     
-    if(isCorrect) {
-        navigation.navigate('Home', {
+    // if(isCorrect) {
+        navigation.navigate('TabHome', {
               username: username,
               password: password,
             })
-    }else {
-      Alert.alert("dang nhap that bai")
-    }
+    // }else {
+    //   Alert.alert("dang nhap that bai")
+    // }
     
   }
   return (
@@ -78,10 +87,18 @@ export default function Login({ navigation }) {
        style={{marginTop: 30, width: 300, height: 40, borderRadius: 20, alignContent: 'center', justifyContent: "center", backgroundColor: '#ee0033'}} >
         <Text style={{color: "#ffffff", alignSelf: 'center'}}>Login</Text>
       </TouchableOpacity>
+
+      <Text style={{marginTop:20}}>{countdown}</Text>
       {/* <FlatList
         data={listCustomer}
         renderItem={({item}) => renderPost(item)}
         keyExtractor={item => item.id}
+      /> */}
+       {/* <CountDown
+        until={10}
+        onFinish={() => alert('finished')}
+        onPress={() => alert('hello')}
+        size={20}
       /> */}
   
     </View>
