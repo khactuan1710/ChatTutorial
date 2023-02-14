@@ -21,11 +21,12 @@ export default function Home({ navigation, route }) {
                 <Image source={require('../../assets/icon.png')} style={{width: 30, height: 30}}/>
                 <Text style={{fontSize: 25, color: "#FFFFFF", fontWeight: "bold", marginLeft: 5}}>Tech Store</Text>
             </View>
-            <View style={{flex: 10, backgroundColor: "#ff00ff"}}>
-                <View style={{backgroundColor: '#ffffff', width: '90%', height: 47, alignSelf: 'center', marginTop: 11, borderRadius: 10, alignItems: 'center', flexDirection: 'row', paddingLeft: 16}}>
+            <View style={{flex: 10, backgroundColor: "#ff00ff"}}
+          >
+                <TouchableOpacity  style={{backgroundColor: '#ffffff', width: '90%', height: 47, alignSelf: 'center', marginTop: 11, borderRadius: 10, alignItems: 'center', flexDirection: 'row', paddingLeft: 16}}>
                     {!isShowImage? <Image source={require('../../assets/favicon.png')} style={{width: 20, height: 20}}/>: null}
-                    <TextInput placeholder='Tìm kiếm sản phẩm' style={{marginLeft: 5,  borderColor: "#000000"}} onFocus={() => {setIsShowImage(true)}} onBlur={() => {console.log('00');}} onTouchCancel={() => {console.log("..");}} onPressOut={()=> {console.log('lddd');}}/>
-                </View>
+                    <TextInput placeholder='Tìm kiếm sản phẩm' style={{marginLeft: 5,  borderColor: "#000000", height: '100%', width: '100%'}} onFocus={() => {navigation.navigate('Search')}} onBlur={() => {console.log('00');}} onTouchCancel={() => {console.log("..");}} onPressOut={()=> {console.log('lddd');}}/>
+                </TouchableOpacity>
                 <Text style={{alignSelf: 'center'}}>{count}</Text>
                 <TouchableOpacity style={{alignSelf:'center'}} onPress={() => {setCount(count+ 1)}}> 
                     <Text>Click</Text>

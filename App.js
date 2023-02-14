@@ -9,13 +9,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Cart from './source/Cart';
 import AccountManage from './source/AccountManage';
 import HomeTab from './source/HomeTab';
+import Search from './source/search/Search';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="TabHome" component={HomeTab} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
   </NavigationContainer>
   );
