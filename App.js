@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './source/login';
-import Home from './source/Home';
+import Home from './source/home/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Cart from './source/Cart';
 import AccountManage from './source/AccountManage';

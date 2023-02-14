@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 import CountDown from 'react-native-countdown-component';
+import homeStore from './home/homeStore';
 //đếm ngược 10s chuyển sang màn home
 export default function Login({ navigation }) {
   const [listCustomer, setListCustomer] = useState();
@@ -10,6 +11,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState();
   const [countdown, setCountdown] = useState(10);
 
+  const [count, setCount] = homeStore((state) => [state.count, state.setCount])
   const getListCustomer = async() => {
      const res = await fetch('https://60f4d20e2208920017f39df5.mockapi.io/customer')
       .then(response => response.json())
@@ -36,6 +38,7 @@ export default function Login({ navigation }) {
   const renderPost = (item) => {
     return (<View>
       <Text>{item.name}</Text>
+      <Text>{count}</Text>
       <Image  style={{width: 200, height: 200}}
         source={{
           uri: item.avatar
@@ -64,6 +67,7 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={{marginTop: 40}}>Đăng nhập</Text>
+      <Text>{count}</Text>
       <TextInput
         style={{width: 300, height: 40, borderRadius: 20, borderColor: '#c4c4c4', borderWidth: 1, paddingLeft: 8, marginTop: 20}}
         onChangeText={(text) => {

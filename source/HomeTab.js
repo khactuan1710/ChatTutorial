@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AccountManage from './AccountManage';
 import Cart from './Cart';
-import Home from './Home';
+import Home from './home/Home';
 export default function HomeTab () {
     const Tab = createBottomTabNavigator();
     return(
