@@ -10,6 +10,7 @@ import Cart from './source/Cart';
 import AccountManage from './source/AccountManage';
 import HomeTab from './source/HomeTab';
 import Search from './source/search/Search';
+import Detail from './source/Detail';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="TabHome" component={HomeTab} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Detail" component={Detail} />
       </Stack.Navigator>
   </NavigationContainer>
   );
