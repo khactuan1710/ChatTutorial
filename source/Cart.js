@@ -9,7 +9,9 @@ import {
   FlatList,
 } from "react-native";
 import { useState, useEffect } from "react";
+import CartStore from "./cart/CartStote";
 
+var soDiem = 0;
 
 export default function Cart({ navigation }) {
   const [listData, setListData] = useState();
@@ -17,7 +19,7 @@ export default function Cart({ navigation }) {
   const [total, setTotal] = useState(0);
   const [totalMoney, setTotalMoney] = useState(0);
   
-
+  const [setListPhone] = CartStore((state) => [state.setListPhone])
   const config = {
     style: "currency",
     currency: "VND",
@@ -49,7 +51,7 @@ console.log(count);
 
   }
   const onDeleteAPI = async(deleteId)  => {
-    fetch("https://60c7a3edafc88600179f5766.mockapi.io/w/" + deleteId, {
+    await fetch("https://60c7a3edafc88600179f5766.mockapi.io/w/" + deleteId, {
         method: 'DELETE',
       })
       .then(res => {
@@ -79,14 +81,16 @@ console.log(count);
     );
   };
 
-  const getListDataFromApi = async () => {
-    await fetch("https://60c7a3edafc88600179f5766.mockapi.io/w")
+  const getListDataFromApi =  () => {
+
+     fetch("https://60c7a3edafc88600179f5766.mockapi.io/w")
       .then((response) => response.json())
       .then((json) => {
         setListData(json);
         const a = new Array();
         setTotal(json.length)
         var total = 0;
+        setListPhone(json)
         json.forEach(element => {
 
             var totalBuy = element.price * element.quantityBuy
@@ -99,6 +103,8 @@ console.log(count);
       .catch((err) => {
         console.error(err);
       });
+      
+      console.log("da goi xong api danh sach san pham");
   };
 
 
@@ -160,6 +166,9 @@ console.log(count);
         <View style={{ flex: 1.5, justifyContent: "center", fontSize: 15 }}>
           <Text style={{ marginLeft: 8, fontWeight: "bold", fontSize: 15 }}>
             Tổng cộng:
+          </Text>
+          <Text style={{ marginLeft: 8, fontWeight: "bold", fontSize: 15 }}>
+            so diem {soDiem}
           </Text>
         </View>
 
@@ -293,7 +302,11 @@ console.log(count);
               backgroundColor: "#00ABFD",
             }}
             onPress={() => {
-              Alert.alert("Clicked");
+              // Alert.alert("Clicked");
+              soDiem = soDiem + 1
+              console.log('so diem: ', soDiem);
+              // setCountState(soDiem)
+
             }}
           >
             <Text>Thanh toán</Text>

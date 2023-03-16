@@ -11,6 +11,8 @@ import AccountManage from './source/AccountManage';
 import HomeTab from './source/HomeTab';
 import Search from './source/search/Search';
 import Detail from './source/Detail';
+import ChatScreen from './source/chat/ChatScreen';
+import ChatWithScreen from './source/chat/ChatWith';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Stack.Screen name="TabHome" component={HomeTab} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Detail" component={Detail} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="ChatWith" component={ChatWithScreen} />
       </Stack.Navigator>
   </NavigationContainer>
   );
